@@ -1,16 +1,15 @@
-// Inspiration -  Frontend Mentor
-// https://www.frontendmentor.io/challenges/myteam-multipage-website-mxlEauvW
-const cardControllers = document.querySelectorAll("[data-card-controller]");
+// Get all the card elements on the page
+const cards = document.querySelectorAll('.card');
 
-cardControllers.forEach(controller => {
-  controller.addEventListener("click", (e) => {
-    const card = e.currentTarget.parentElement.parentElement;
-    const isVisible = card.dataset.visible;
+// Loop through each card and add a click event listener to the toggle button
+cards.forEach(card => {
+  const toggleButton = card.querySelector('.card__toggle');
+  const backSide = card.querySelector('.card__back');
 
-    if (isVisible === "false") {
-      card.setAttribute("data-visible", true);
-    } else {
-      card.setAttribute("data-visible", false);
-    }
-  })
-})
+  toggleButton.addEventListener('click', () => {
+    // Toggle the visibility of the back side
+    const isVisible = card.getAttribute('data-visible') === 'true';
+    backSide.style.display = isVisible ? 'none' : 'block';
+    card.setAttribute('data-visible', !isVisible);
+  });
+});
